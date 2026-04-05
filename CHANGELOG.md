@@ -17,6 +17,7 @@
 **Updated:**
 
 - .gitignore
+- README.md
 
 ## [0.0.3] (April 04, 2026)
 
