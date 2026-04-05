@@ -12,6 +12,7 @@
 - Task 5 solution
 - .gitignore file in `util` directory
 - README.md file in `util` directory
+- project-improvements.md
 
 **Updated:**
 
