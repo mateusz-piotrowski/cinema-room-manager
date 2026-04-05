@@ -8,6 +8,7 @@
 - Task 1 solution
 - Task 2 solution
 - Task 3 solution
+- Task 4 solution
 
 **Updated:**
 

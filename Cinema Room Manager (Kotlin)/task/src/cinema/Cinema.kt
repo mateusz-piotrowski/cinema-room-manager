@@ -6,57 +6,61 @@ fun main() {
     val scanner = Scanner(System.`in`)
 
     println("Enter the number of rows:")
-    val rows = scanner.nextInt()
+    val nRows = scanner.nextInt()
     println("Enter the number of seats in each row:")
-    val seatsInRow = scanner.nextInt()
-
+    val nSeats = scanner.nextInt()
     println()
 
-    // Print initial cinema
+    val cinema = Array(nRows) { CharArray(nSeats) { 'S' } }
+
+    while (true) {
+        println("1. Show the seats")
+        println("2. Buy a ticket")
+        println("0. Exit")
+
+        when (scanner.nextInt()) {
+            1 -> printCinema(cinema, nRows, nSeats)
+            2 -> buyTicket(cinema, nRows, nSeats)
+            0 -> return
+        }
+    }
+}
+
+fun printCinema(cinema: Array<CharArray>, nRows: Int, nSeats: Int) {
+    println()
     println("Cinema:")
     print("  ")
-    for (col in 1..seatsInRow) print("$col ")
+    repeat(nSeats) { print("${it + 1} ") }
     println()
-    for (row in 1..rows) {
-        print("$row ")
-        for (col in 1..seatsInRow) print("S ")
+    repeat(nRows) { row ->
+        print("${row + 1} ")
+        repeat(nSeats) { col ->
+            print("${cinema[row][col]} ")
+        }
         println()
     }
+    println()
+}
+
+fun buyTicket(cinema: Array<CharArray>, nRows: Int, nSeats: Int) {
+    val scanner = Scanner(System.`in`)
 
     println()
-
     println("Enter a row number:")
-    val selectedRow = scanner.nextInt()
+    val row = scanner.nextInt() - 1
     println("Enter a seat number in that row:")
-    val selectedCol = scanner.nextInt()
+    val col = scanner.nextInt() - 1
 
-    // Calculate price
-    val totalSeats = rows * seatsInRow
+    val totalSeats = nRows * nSeats
     val price = if (totalSeats <= 60) {
         10
     } else {
-        val half = rows / 2
-        if (selectedRow <= half) 10 else 8
+        val half = nRows / 2
+        if (row < half) 10 else 8
     }
 
     println()
     println("Ticket price: $$price")
-    println()
 
-    // Print updated cinema with B
-    println("Cinema:")
-    print("  ")
-    for (col in 1..seatsInRow) print("$col ")
-    println()
-    for (row in 1..rows) {
-        print("$row ")
-        for (col in 1..seatsInRow) {
-            if (row == selectedRow && col == selectedCol) {
-                print("B ")
-            } else {
-                print("S ")
-            }
-        }
-        println()
-    }
+    cinema[row][col] = 'B'
 }
