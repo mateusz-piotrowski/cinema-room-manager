@@ -7,6 +7,7 @@
 - Initial project files
 - Task 1 solution
 - Task 2 solution
+- Task 3 solution
 
 **Updated:**
 
